@@ -13,12 +13,12 @@ __author__ = 'christof petrick'
 # conda install -c https://conda.anaconda.org/mmcauliffe pyqt5
 # you can run the following code in your environment "addresscorrect" using "python main.py"
 #
-# wieder wech
 
 import sys, json, urllib.request
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt, QCoreApplication
 
+from PyQt5.QtWidgets import QComboBox
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -40,6 +40,15 @@ class Main(QtWidgets.QMainWindow):
         self.output_line.setReadOnly(True)
         self.output_line.setAlignment(Qt.AlignRight)
         self.output_line.resize(400, 25)
+
+        self.combo = QComboBox(self)
+        self.combo.addItem("en")
+        self.combo.addItem("de")
+        self.combo.addItem("fr")
+        self.combo.addItem("es")
+        self.combo.addItem("ru")
+        self.combo.move(5, 65)
+
 
         # CORRECT button
         correct_button = QtWidgets.QPushButton("CORRECT", self)
@@ -76,7 +85,7 @@ class Main(QtWidgets.QMainWindow):
         adresse = self.ad_format(adresse)
 
         # Insert addresses into url
-        url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adresse + "&language=de"
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adresse + "&language="+str(self.combo.currentText()) #de"
         r = urllib.request.urlopen(url)
 
         # Parse and read json file
