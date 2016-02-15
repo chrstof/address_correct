@@ -27,31 +27,31 @@ class Main(QtWidgets.QMainWindow):
 
     def initUI(self):
         # Input
-        self.line1 = QtWidgets.QLineEdit(self)
-        self.line1.setPlaceholderText('ERRONEOUS ADDRESS')
-        self.line1.move(5, 5)
-        self.line1.setAlignment(Qt.AlignRight)
-        self.line1.resize(400, 25)
+        self.input_line = QtWidgets.QLineEdit(self)
+        self.input_line.setPlaceholderText('ERRONEOUS ADDRESS')
+        self.input_line.move(5, 5)
+        self.input_line.setAlignment(Qt.AlignRight)
+        self.input_line.resize(400, 25)
 
         # Output
-        self.line = QtWidgets.QLineEdit(self)
-        self.line.setPlaceholderText('CORRECTED ADDRESS')
-        self.line.move(5, 35)
-        self.line.setReadOnly(True)
-        self.line.setAlignment(Qt.AlignRight)
-        self.line.resize(400, 25)
+        self.output_line = QtWidgets.QLineEdit(self)
+        self.output_line.setPlaceholderText('CORRECTED ADDRESS')
+        self.output_line.move(5, 35)
+        self.output_line.setReadOnly(True)
+        self.output_line.setAlignment(Qt.AlignRight)
+        self.output_line.resize(400, 25)
 
         # CORRECT button
-        korregieren = QtWidgets.QPushButton("CORRECT", self)
-        korregieren.move(305, 65)
-        korregieren.resize(100, 30)
-        korregieren.clicked.connect(self.Operator)
+        correct_button = QtWidgets.QPushButton("CORRECT", self)
+        correct_button.move(305, 65)
+        correct_button.resize(100, 30)
+        correct_button.clicked.connect(self.Operator)
 
         # QUIT button
-        quit = QtWidgets.QPushButton("QUIT", self)
-        quit.clicked.connect(QCoreApplication.instance().quit)
-        quit.move(200, 65)
-        quit.resize(100, 30)
+        quit_button = QtWidgets.QPushButton("QUIT", self)
+        quit_button.clicked.connect(QCoreApplication.instance().quit)
+        quit_button.move(200, 65)
+        quit_button.resize(100, 30)
 
         # Window setting
         self.setGeometry(300, 300, 410, 120)
@@ -61,7 +61,7 @@ class Main(QtWidgets.QMainWindow):
         self.show()
 
     def Operator(self):
-        self.line.setText(self.ad_complete(self.line1.text()))
+        self.output_line.setText(self.ad_complete(self.input_line.text()))
 
     def ad_format(self, adresse):
         # for all the german users, this function will replace all "Umlaute", i.e. ö,ä,ü and ß
