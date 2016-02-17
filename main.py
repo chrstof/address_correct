@@ -91,8 +91,12 @@ class Main(QtWidgets.QMainWindow):
         # Parse and read json file
         data = json.loads(r.read().decode(r.info().get_param('charset') or 'utf-8'))
 
-        # extract formated address [additional informations e.g. geo coordinates ]
-        formatierte_adresse = data['results'][0]['formatted_address']
+        try:
+            # extract formated address [additional informations e.g. geo coordinates ]
+            formatierte_adresse = data['results'][0]['formatted_address']
+        except:
+            formatierte_adresse = 'Error'
+
         return formatierte_adresse
 
 

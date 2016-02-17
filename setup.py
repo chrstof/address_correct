@@ -11,16 +11,7 @@ setup(
     description='Program to correct erroneous addresses using google maps api',
     install_requires=[
         'python>=3.5',
-        'PyQt>=5.0',
+        'PyQt5>=5.0',
     ]
 )
 
-
-
-"""
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-"""
